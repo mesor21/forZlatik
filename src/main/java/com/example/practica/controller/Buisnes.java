@@ -1,6 +1,5 @@
 package com.example.practica.controller;
 
-import com.example.practica.entity.Lighting;
 import com.example.practica.service.AllList;
 import com.example.practica.service.EditObject;
 import com.example.practica.service.Status;
@@ -34,6 +33,7 @@ public class Buisnes {
     public String turnOff(@PathVariable("id")String id, Model model){
         Status x = new Status();
         x.setStatus(id, false);
+        System.out.println("TurnOff: "+id);
         return "redirect:/info/get";
     }
 }

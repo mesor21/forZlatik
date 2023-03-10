@@ -1,10 +1,7 @@
 package com.example.practica.repository;
 
 import com.example.practica.entity.Lighting;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import org.springframework.stereotype.Repository;
 
@@ -47,6 +44,13 @@ public class JSONRepo {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Comparator<Lighting> idComparator = new Comparator<Lighting>() {
+            @Override
+            public int compare(Lighting o1, Lighting o2) {
+                return o1.getId().compareTo(o2.getId());
+            }
+        };
+        myClassList.sort(idComparator);
         myClassList.remove(Integer.parseInt(myClassId.toString())-1);
         try {
             FileWriter fileWriter = new FileWriter(fileName);
@@ -69,7 +73,16 @@ public class JSONRepo {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        x.setId(Long.valueOf(myClassList.size()+plus ));
+        Comparator<Lighting> idComparator = new Comparator<Lighting>() {
+            @Override
+            public int compare(Lighting o1, Lighting o2) {
+                return o1.getId().compareTo(o2.getId());
+            }
+        };
+        myClassList.sort(idComparator);
+        if(plus==1){
+            x.setId(Long.valueOf(myClassList.size() + plus));
+        }
         myClassList.add(x);
         try {
             FileWriter fileWriter = new FileWriter(fileName);
@@ -102,4 +115,3 @@ public class JSONRepo {
         return myClassList;
     }
 }
-
