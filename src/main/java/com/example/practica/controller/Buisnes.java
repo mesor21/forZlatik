@@ -21,13 +21,13 @@ public class Buisnes {
     }
     @GetMapping("turnOn/{id}")
     public String turnOn(@PathVariable("id")String id, Model model){
-        lightingService.setStatus(id,true);
+        lightingService.setLightingStatus(id,true);
         System.out.println("TurnOn: "+id);
         return "redirect:/info/get";
     }
     @GetMapping("turnOff/{id}")
     public String turnOff(@PathVariable("id")String id, Model model){
-        lightingService.setStatus(id, false);
+        lightingService.setLightingStatus(id, false);
         System.out.println("TurnOff: "+id);
         return "redirect:/info/get";
     }

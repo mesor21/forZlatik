@@ -23,13 +23,13 @@ public class AllRequest {
     @GetMapping("{id}")
     public String getLighting(@PathVariable("id")String id, Model model){
         List<Lighting> arr = new ArrayList<>();
-        arr.add(lightingService.getObjectByID(id));
+        arr.add(lightingService.getLightingID(id));
         model.addAttribute("list",arr);
         return "editLighting";
     }
     @PostMapping("")
     public String createNewLighting(){
-        lightingService.saveNewObject();
+        lightingService.saveNewLighting();
         System.out.println("Create new object");
         return "redirect:/";
     }
@@ -48,7 +48,7 @@ public class AllRequest {
 
     @GetMapping("delete/{id}")
     public String delete(@PathVariable("id")String id){
-        lightingService.deleteObject(id);
+        lightingService.deleteLighting(id);
         return "redirect:/";
     }
 }

@@ -14,15 +14,15 @@ public class LightingService {
     public List<Lighting> getList(){
         return jsonRepo.findAll();
     }
-    public void saveNewObject(){
+    public void saveNewLighting(){
         Lighting newL =new Lighting();
         jsonRepo.save(newL,1);
         System.out.println("Create new empty object");
     }
-    public void deleteObject(String id){
+    public void deleteLighting(String id){
         jsonRepo.delete(Long.parseLong(id));
     }
-    public Lighting getObjectByID(String id){
+    public Lighting getLightingID(String id){
         return jsonRepo.getByID(Long.parseLong(id));
     }
     public boolean saveEdit(String id, String red, String green, String blue,String power, String lux, String uptime){
@@ -90,7 +90,7 @@ public class LightingService {
         jsonRepo.save(lighting,0);
         return false;
     }
-    public void setStatus(String id,boolean status){
+    public void setLightingStatus(String id,boolean status){
         Lighting lighting = jsonRepo.getByID(Long.parseLong(id));
         jsonRepo.delete(lighting.getId());
         lighting.setStatus(status);
