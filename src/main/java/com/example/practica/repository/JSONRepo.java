@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public class JSONRepo {
     private final static String fileName ="/home/lol/university/23.02-23.07/Pract/practica/src/main/resources/file.json";
-    public static Lighting findByID(Long myClassId) {
+    public static Lighting getByID(Long myClassId) {
         List<Lighting> myClassList= new ArrayList<>();
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));

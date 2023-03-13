@@ -3,7 +3,6 @@ package com.example.practica.entity;
 
 public class Lighting {
     private Long id;
-
     private int collor_red;//
     private int collor_blue;//цветовой тон излучения
     private int collor_green;//

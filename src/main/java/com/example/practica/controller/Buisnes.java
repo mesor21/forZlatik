@@ -1,8 +1,6 @@
 package com.example.practica.controller;
 
-import com.example.practica.service.AllList;
-import com.example.practica.service.EditObject;
-import com.example.practica.service.Status;
+import com.example.practica.service.LightingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,24 +13,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/info/")
 public class Buisnes {
     @Autowired
-    AllList allList = new AllList();
-    EditObject editObject = new EditObject();
+    LightingService lightingService;
     @GetMapping("get")
     String get4Buisnes(Model model){
-        model.addAttribute("list",allList.getList());
+        model.addAttribute("list",lightingService.getList());
         return "list4Buisnes";
     }
     @GetMapping("turnOn/{id}")
     public String turnOn(@PathVariable("id")String id, Model model){
-        Status x = new Status();
-        x.setStatus(id,true);
+        lightingService.setStatus(id,true);
         System.out.println("TurnOn: "+id);
         return "redirect:/info/get";
     }
     @GetMapping("turnOff/{id}")
     public String turnOff(@PathVariable("id")String id, Model model){
-        Status x = new Status();
-        x.setStatus(id, false);
+        lightingService.setStatus(id, false);
         System.out.println("TurnOff: "+id);
         return "redirect:/info/get";
     }
